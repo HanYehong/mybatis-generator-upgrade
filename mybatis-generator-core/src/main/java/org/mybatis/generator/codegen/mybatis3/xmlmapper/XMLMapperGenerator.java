@@ -61,6 +61,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addInsertElement(answer);
         addInsertSelectiveElement(answer);
         addSaveBatchElement(answer);
+        addListElement(answer);
         addCountByExampleElement(answer);
         addUpdateByExampleSelectiveElement(answer);
         addUpdateByExampleWithBLOBsElement(answer);
@@ -169,10 +170,13 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     protected void addSaveBatchElement(XmlElement parentElement) {
-        if (introspectedTable.getRules().generateInsertSelective()) {
-            AbstractXmlElementGenerator elementGenerator = new SaveBatchElementGenerator();
-            initializeAndExecuteGenerator(elementGenerator, parentElement);
-        }
+        AbstractXmlElementGenerator elementGenerator = new SaveBatchElementGenerator();
+        initializeAndExecuteGenerator(elementGenerator, parentElement);
+    }
+
+    protected void addListElement(XmlElement parentElement) {
+        AbstractXmlElementGenerator elementGenerator = new ListElementGenerator();
+        initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addCountByExampleElement(XmlElement parentElement) {

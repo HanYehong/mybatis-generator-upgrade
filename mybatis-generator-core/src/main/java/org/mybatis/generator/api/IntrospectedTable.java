@@ -78,6 +78,7 @@ public abstract class IntrospectedTable {
         ATTR_INSERT_STATEMENT_ID,
         ATTR_INSERT_SELECTIVE_STATEMENT_ID,
         SAVE_BATCH_STATEMENT_ID,
+        LIST_STATEMENT_ID,
         ATTR_SELECT_ALL_STATEMENT_ID,
         ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID,
         ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
@@ -533,6 +534,7 @@ public abstract class IntrospectedTable {
         setInsertStatementId("insert"); //$NON-NLS-1$
         setInsertSelectiveStatementId("insertSelective"); //$NON-NLS-1$
         setSaveBatchStatementId("saveBatch"); //$NON-NLS-1$
+        setListStatementId("list"); //$NON-NLS-1$
         setSelectAllStatementId("selectAll"); //$NON-NLS-1$
         setSelectByExampleStatementId("selectByExample"); //$NON-NLS-1$
         setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
@@ -647,6 +649,11 @@ public abstract class IntrospectedTable {
                 InternalAttribute.SAVE_BATCH_STATEMENT_ID, s);
     }
 
+    public void setListStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.LIST_STATEMENT_ID, s);
+    }
+
     public void setInsertStatementId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_INSERT_STATEMENT_ID, s);
     }
@@ -754,6 +761,11 @@ public abstract class IntrospectedTable {
     public String getSaveBatchStatementId() {
         return internalAttributes
                 .get(InternalAttribute.SAVE_BATCH_STATEMENT_ID);
+    }
+
+    public String getListStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.LIST_STATEMENT_ID);
     }
 
     public String getInsertStatementId() {
