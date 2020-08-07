@@ -23,10 +23,7 @@ import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
@@ -92,6 +89,14 @@ public class TableConfiguration extends PropertyHolder {
     private String sqlProviderName;
 
     private List<IgnoredColumnPattern> ignoredColumnPatterns = new ArrayList<IgnoredColumnPattern>();
+
+    private String updateId;
+    private String updateBy;
+    private Date updateOn;
+    private String creatorId;
+    private String createBy;
+    private Date createOn;
+    private Integer rowStatus;
 
     public TableConfiguration(Context context) {
         super();
@@ -610,5 +615,61 @@ public class TableConfiguration extends PropertyHolder {
 
     public void setSqlProviderName(String sqlProviderName) {
         this.sqlProviderName = sqlProviderName;
+    }
+
+    public String getUpdateId() {
+        return updateId;
+    }
+
+    public void setUpdateId(String updateId) {
+        this.updateId = updateId;
+    }
+
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public Date getUpdateOn() {
+        return updateOn;
+    }
+
+    public void setUpdateOn(Date updateOn) {
+        this.updateOn = updateOn;
+    }
+
+    public String getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateOn() {
+        return createOn;
+    }
+
+    public void setCreateOn(Date createOn) {
+        this.createOn = createOn;
+    }
+
+    public Integer getRowStatus() {
+        return rowStatus;
+    }
+
+    public void setRowStatus(Integer rowStatus) {
+        this.rowStatus = rowStatus;
     }
 }

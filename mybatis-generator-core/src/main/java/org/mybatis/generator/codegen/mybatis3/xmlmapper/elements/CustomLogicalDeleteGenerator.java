@@ -11,36 +11,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 逻辑删除生成器
+ * <update>
+ *     update table_name set row_status = 0 where ……
+ * </update>
+ *
  * @author 韩业红
  * @date 2020/5/17
  */
-public class ListElementGenerator extends
+public class CustomLogicalDeleteGenerator extends
         AbstractXmlElementGenerator {
     @Override
     public void addElements(XmlElement parentElement) {
-        XmlElement answer = new XmlElement("select");
+        XmlElement answer = new XmlElement("update");
 
-        answer.addAttribute(new Attribute(
-                "id", introspectedTable.getListStatementId()));
-
-        if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
-            answer.addAttribute(new Attribute("resultMap",
-                    introspectedTable.getResultMapWithBLOBsId()));
-        } else {
-            answer.addAttribute(new Attribute("resultMap",
-                    introspectedTable.getBaseResultMapId()));
-        }
+        answer.addAttribute(new Attribute("id", "remove"));
 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("select ");
+        sb.append("update ");
 
         answer.addElement(new TextElement(sb.toString()));
-        answer.addElement(getBaseColumnListElement());
 
         sb.setLength(0);
-        sb.append("from ");
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
         answer.addElement(new TextElement(sb.toString()));
@@ -50,9 +44,9 @@ public class ListElementGenerator extends
                         introspectedTable.getAllColumns());
         List<IntrospectedColumn> rowStatus = removeIdentityAndGeneratedAlwaysColumns.stream().filter(x -> "row_status".equals(x.getActualColumnName())).collect(Collectors.toList());
         if (rowStatus.size() > 0) {
-            answer.addElement(new TextElement("where row_status = 1"));
+            answer.addElement(new TextElement("set row_status = 0"));
         } else {
-            answer.addElement(new TextElement("where 1 = 1"));
+            answer.addElement(new TextElement("set @empty"));
         }
 
         XmlElement insertTrimElement = new XmlElement("trim");

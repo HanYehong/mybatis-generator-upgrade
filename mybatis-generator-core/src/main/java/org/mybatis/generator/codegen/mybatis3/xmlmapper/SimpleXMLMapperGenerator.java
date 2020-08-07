@@ -46,11 +46,10 @@ public class SimpleXMLMapperGenerator extends AbstractXmlGenerator {
 
 		context.getCommentGenerator().addRootComment(answer);
 
-		addResultMapElement(answer);
-		addDeleteByPrimaryKeyElement(answer);
-//        addInsertElement(answer);
 		addSaveBatchElement(answer);
 		addListElement(answer);
+		addResultMapElement(answer);
+		addDeleteByPrimaryKeyElement(answer);
 		addUpdateByPrimaryKeyElement(answer);
 		addSelectByPrimaryKeyElement(answer);
 		addSelectAllElement(answer);

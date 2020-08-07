@@ -36,10 +36,8 @@ import java.awt.*;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLRecoverableException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class MainUIController extends BaseFXController {
 
@@ -113,6 +111,21 @@ public class MainUIController extends BaseFXController {
 
     @FXML
     private ChoiceBox<String> encodingChoice;
+
+    @FXML
+    private TextField updateId;
+    @FXML
+    private TextField updateBy;
+    @FXML
+    private TextField updateOn;
+    @FXML
+    private TextField creatorId;
+    @FXML
+    private TextField createBy;
+    @FXML
+    private TextField createOn;
+    @FXML
+    private TextField rowStatus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -433,7 +446,12 @@ public class MainUIController extends BaseFXController {
         useDAOExtendStyle.setSelected(generatorConfig.isUseDAOExtendStyle());
         useSchemaPrefix.setSelected(generatorConfig.isUseSchemaPrefix());
         jsr310Support.setSelected(generatorConfig.isJsr310Support());
-
+        updateBy.setText(generatorConfig.getUpdateBy());
+        updateId.setText(generatorConfig.getUpdateId());
+        updateOn.setText(generatorConfig.getUpdateOn());
+        createBy.setText(generatorConfig.getCreateBy());
+        creatorId.setText(generatorConfig.getCreatorId());
+        createOn.setText(generatorConfig.getCreateOn());
     }
 
     @FXML

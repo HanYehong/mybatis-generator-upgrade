@@ -49,6 +49,9 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
 
         addResultMapWithoutBLOBsElement(answer);
         addResultMapWithBLOBsElement(answer);
+        addSaveBatchElement(answer);
+        addListElement(answer);
+        addCustomLogicalDelete(answer);
         addExampleWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
         addBaseColumnListElement(answer);
@@ -60,8 +63,6 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addDeleteByExampleElement(answer);
         addInsertElement(answer);
         addInsertSelectiveElement(answer);
-        addSaveBatchElement(answer);
-        addListElement(answer);
         addCountByExampleElement(answer);
         addUpdateByExampleSelectiveElement(answer);
         addUpdateByExampleWithBLOBsElement(answer);
@@ -176,6 +177,11 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
 
     protected void addListElement(XmlElement parentElement) {
         AbstractXmlElementGenerator elementGenerator = new ListElementGenerator();
+        initializeAndExecuteGenerator(elementGenerator, parentElement);
+    }
+
+    protected void addCustomLogicalDelete(XmlElement parentElement) {
+        AbstractXmlElementGenerator elementGenerator = new CustomLogicalDeleteGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
