@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="maven-all" />
+      <option name="name" value="maven-all" />
+      <option name="url" value="http://repo.17usoft.com/content/groups/maven-all/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="aliyun" />
+      <option name="name" value="aliyun" />
+      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="http://mirrors.ibiblio.org/pub/mirrors/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wireless-support" />
+      <option name="name" value="wireless-support" />
+      <option name="url" value="http://172.16.58.7:8081/nexus/content/repositories/wireless-support/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="mvn-all" />
+      <option name="name" value="mvn-all" />
+      <option name="url" value="http://nexus.17usoft.com/repository/mvn-all/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+  </component>
+</project>

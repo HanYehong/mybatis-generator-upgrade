@@ -1,0 +1,17 @@
+org\mybatis\generator\MyBatisGeneratorTest.class
+org\mybatis\generator\internal\util\StringUtilityTest.class
+org\mybatis\generator\SqlScriptRunner.class
+org\mybatis\generator\api\dom\java\FullyQualifiedJavaTypeTest.class
+org\mybatis\generator\api\dom\java\MethodTest.class
+org\mybatis\generator\api\dom\java\TypeParameterTest.class
+org\mybatis\generator\internal\XmlFileMergerTest.class
+org\mybatis\generator\XmlCodeGenerationTest$TestErrorHandler.class
+org\mybatis\generator\api\dom\java\InnerClassTest.class
+org\mybatis\generator\api\dom\java\InnerInterfaceTest.class
+org\mybatis\generator\XmlCodeGenerationTest.class
+org\mybatis\generator\api\dom\java\JavaDomUtilsTest.class
+org\mybatis\generator\api\GeneratedJavaFileTest.class
+org\mybatis\generator\api\dom\java\InterfaceTest.class
+org\mybatis\generator\JavaCodeGenerationTest.class
+org\mybatis\generator\internal\util\JavaBeansUtilTest.class
+org\mybatis\generator\XmlCodeGenerationTest$TestEntityResolver.class
