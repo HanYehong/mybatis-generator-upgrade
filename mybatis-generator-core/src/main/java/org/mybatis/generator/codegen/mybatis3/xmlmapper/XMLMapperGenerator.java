@@ -49,13 +49,16 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
 
         addResultMapWithoutBLOBsElement(answer);
         addResultMapWithBLOBsElement(answer);
-        addSaveBatchElement(answer);
-        addListElement(answer);
-        addCustomLogicalDelete(answer);
         addExampleWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
         addBaseColumnListElement(answer);
         addBlobColumnListElement(answer);
+
+        addSaveBatchElement(answer);
+        addListElement(answer);
+        addCustomDelete(answer);
+        addCustomLogicalDelete(answer);
+
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
         addSelectByPrimaryKeyElement(answer);
@@ -171,12 +174,17 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     }
 
     protected void addSaveBatchElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new SaveBatchElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new CustomSaveBatchGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 
     protected void addListElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new ListElementGenerator();
+        AbstractXmlElementGenerator elementGenerator = new CustomListGenerator();
+        initializeAndExecuteGenerator(elementGenerator, parentElement);
+    }
+
+    protected void addCustomDelete(XmlElement parentElement) {
+        AbstractXmlElementGenerator elementGenerator = new CustomDeleteGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 

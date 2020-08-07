@@ -74,7 +74,7 @@ public class CommonDAOInterfacePlugin extends PluginAdapter {
                 CompilationUnit compilationUnit = generatedJavaFile.getCompilationUnit();
                 FullyQualifiedJavaType type = compilationUnit.getType();
                 String modelName = type.getShortName();
-                if (modelName.endsWith("DAO")) {
+                if (modelName.endsWith("Dao")) {
                 }
             }
             GeneratedJavaFile mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir, javaFileEncoding, javaFormatter);

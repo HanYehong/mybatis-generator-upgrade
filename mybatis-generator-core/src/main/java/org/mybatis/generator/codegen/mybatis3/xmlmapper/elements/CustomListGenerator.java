@@ -5,23 +5,26 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
+import org.mybatis.generator.codegen.mybatis3.custom.CustomColumnField;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 条件查询生成器
+ *
  * @author 韩业红
  * @date 2020/5/17
  */
-public class ListElementGenerator extends
+public class CustomListGenerator extends
         AbstractXmlElementGenerator {
     @Override
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select");
 
         answer.addAttribute(new Attribute(
-                "id", introspectedTable.getListStatementId()));
+                "id", "list"));
 
         if (introspectedTable.getRules().generateResultMapWithBLOBs()) {
             answer.addAttribute(new Attribute("resultMap",
@@ -48,9 +51,10 @@ public class ListElementGenerator extends
         List<IntrospectedColumn> removeIdentityAndGeneratedAlwaysColumns =
                 ListUtilities.removeIdentityAndGeneratedAlwaysColumns(
                         introspectedTable.getAllColumns());
-        List<IntrospectedColumn> rowStatus = removeIdentityAndGeneratedAlwaysColumns.stream().filter(x -> "row_status".equals(x.getActualColumnName())).collect(Collectors.toList());
+        List<IntrospectedColumn> rowStatus = removeIdentityAndGeneratedAlwaysColumns.stream().filter(
+                x -> CustomColumnField.ROW_STATUS.equals(x.getActualColumnName())).collect(Collectors.toList());
         if (rowStatus.size() > 0) {
-            answer.addElement(new TextElement("where row_status = 1"));
+            answer.addElement(new TextElement("where " + CustomColumnField.ROW_STATUS + " = 1"));
         } else {
             answer.addElement(new TextElement("where 1 = 1"));
         }
@@ -59,10 +63,8 @@ public class ListElementGenerator extends
         insertTrimElement.addAttribute(new Attribute("suffixOverrides", ","));
         answer.addElement(insertTrimElement);
 
-        List<String> notGenColumnNames = Arrays.asList("row_status", "update_by", "update_id", "update_on", "create_by", "creator_id", "create_on", "tenant_code");
-
         for (IntrospectedColumn introspectedColumn : removeIdentityAndGeneratedAlwaysColumns) {
-            if (!notGenColumnNames.contains(introspectedColumn.getActualColumnName())) {
+            if (!CustomColumnField.inFields(introspectedColumn.getActualColumnName())) {
                 gen(sb, insertTrimElement, introspectedColumn);
             }
         }

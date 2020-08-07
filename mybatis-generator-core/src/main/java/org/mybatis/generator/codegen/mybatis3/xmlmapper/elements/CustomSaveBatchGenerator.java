@@ -12,10 +12,12 @@ import org.mybatis.generator.config.GeneratedKey;
 import java.util.List;
 
 /**
+ * 批量插入生成器
+ *
  * @author 韩业红
  * @date 2020/5/17
  */
-public class SaveBatchElementGenerator extends
+public class CustomSaveBatchGenerator extends
         AbstractXmlElementGenerator {
     @Override
     public void addElements(XmlElement parentElement) {

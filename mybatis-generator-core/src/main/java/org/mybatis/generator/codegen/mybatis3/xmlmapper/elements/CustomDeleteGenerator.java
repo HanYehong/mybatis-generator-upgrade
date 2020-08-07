@@ -7,31 +7,27 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.custom.CustomColumnField;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 逻辑删除生成器
- * <update>
- *     update table_name set row_status = 0 where ……
- * </update>
+ * 物理删除生成器
  *
  * @author 韩业红
  * @date 2020/5/17
  */
-public class CustomLogicalDeleteGenerator extends
+public class CustomDeleteGenerator extends
         AbstractXmlElementGenerator {
     @Override
     public void addElements(XmlElement parentElement) {
-        XmlElement answer = new XmlElement("update");
+        XmlElement answer = new XmlElement("delete");
 
-        answer.addAttribute(new Attribute("id", "remove"));
+        answer.addAttribute(new Attribute("id", "delete"));
 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("update ");
+        sb.append("delete from ");
 
         answer.addElement(new TextElement(sb.toString()));
 
@@ -46,9 +42,9 @@ public class CustomLogicalDeleteGenerator extends
         List<IntrospectedColumn> rowStatus = removeIdentityAndGeneratedAlwaysColumns.stream().filter(
                 x -> CustomColumnField.ROW_STATUS.equals(x.getActualColumnName())).collect(Collectors.toList());
         if (rowStatus.size() > 0) {
-            answer.addElement(new TextElement("set " + CustomColumnField.ROW_STATUS + " = 0"));
+            answer.addElement(new TextElement("where " + CustomColumnField.ROW_STATUS + " = 1"));
         } else {
-            answer.addElement(new TextElement("set @empty"));
+            answer.addElement(new TextElement("where 1 = 1"));
         }
 
         XmlElement insertTrimElement = new XmlElement("trim");

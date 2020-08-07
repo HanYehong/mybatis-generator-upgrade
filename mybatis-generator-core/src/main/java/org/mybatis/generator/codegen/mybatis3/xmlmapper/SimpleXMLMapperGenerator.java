@@ -58,12 +58,12 @@ public class SimpleXMLMapperGenerator extends AbstractXmlGenerator {
 	}
 
 	protected void addSaveBatchElement(XmlElement parentElement) {
-		AbstractXmlElementGenerator elementGenerator = new SaveBatchElementGenerator();
+		AbstractXmlElementGenerator elementGenerator = new CustomSaveBatchGenerator();
 		initializeAndExecuteGenerator(elementGenerator, parentElement);
 	}
 
 	protected void addListElement(XmlElement parentElement) {
-		AbstractXmlElementGenerator elementGenerator = new ListElementGenerator();
+		AbstractXmlElementGenerator elementGenerator = new CustomListGenerator();
 		initializeAndExecuteGenerator(elementGenerator, parentElement);
 	}
 
