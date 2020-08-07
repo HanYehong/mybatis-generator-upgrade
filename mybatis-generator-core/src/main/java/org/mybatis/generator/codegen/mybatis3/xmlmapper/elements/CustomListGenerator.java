@@ -5,7 +5,9 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
+import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.custom.CustomColumnField;
+import org.mybatis.generator.config.TableConfiguration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -86,14 +88,37 @@ public class CustomListGenerator extends
                 "test", sb.toString()));
 
 
-        sb.setLength(0);
-        sb.append(" and ")
-                .append(introspectedColumn.getActualColumnName())
-                .append(" = ")
-                .append("#{").append(introspectedColumn.getJavaProperty()).append("}");
+        List<TableConfiguration> tableConfigurations = context.getTableConfigurations();
+        TableConfiguration tableConfiguration = tableConfigurations.get(0);
+        List<String> foreachFields = tableConfiguration.getForeachFields();
 
-        sb.append(',');
-        valuesNotNullElement.addElement(new TextElement(sb.toString()));
+        if (foreachFields.contains(introspectedColumn.getActualColumnName())) {
+            sb.setLength(0);
+            sb.append(" and ")
+                    .append(introspectedColumn.getActualColumnName())
+                    .append(" in ");
+
+            XmlElement foreachElement = new XmlElement("foreach");
+            foreachElement.addAttribute(new Attribute("collection", "list"));
+            foreachElement.addAttribute(new Attribute("item", "item"));
+            foreachElement.addAttribute(new Attribute("open", "("));
+            foreachElement.addAttribute(new Attribute("close", ")"));
+            foreachElement.addAttribute(new Attribute("separator", ","));
+            foreachElement.addElement(new TextElement(
+                    MyBatis3FormattingUtilities
+                            .getParameterClause(introspectedColumn, "item.")));
+
+            valuesNotNullElement.addElement(new TextElement(sb.toString()));
+            valuesNotNullElement.addElement(foreachElement);
+        } else {
+            sb.setLength(0);
+            sb.append(" and ")
+                    .append(introspectedColumn.getActualColumnName())
+                    .append(" = ")
+                    .append(MyBatis3FormattingUtilities
+                            .getParameterClause(introspectedColumn));
+            valuesNotNullElement.addElement(new TextElement(sb.toString()));
+        }
 
         insertTrimElement.addElement(valuesNotNullElement);
     }

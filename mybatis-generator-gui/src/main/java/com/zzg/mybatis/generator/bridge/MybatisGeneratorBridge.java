@@ -18,10 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The bridge between GUI and the mybatis generator. All the operation to  mybatis generator should proceed through this
@@ -75,6 +72,13 @@ public class MybatisGeneratorBridge {
             tableConfig.setDeleteByExampleStatementEnabled(false);
             tableConfig.setSelectByExampleStatementEnabled(false);
         }
+
+		String foreachFields = generatorConfig.getForeachFields();
+        if (StringUtils.isNotEmpty(foreachFields)) {
+			tableConfig.setForeachFields(Arrays.asList(foreachFields.split(";")));
+		} else {
+			tableConfig.setForeachFields(Collections.emptyList());
+		}
 
 		context.addProperty("autoDelimitKeywords", "true");
 		if (DbType.MySQL.name().equals(dbType) || DbType.MySQL_8.name().equals(dbType)) {

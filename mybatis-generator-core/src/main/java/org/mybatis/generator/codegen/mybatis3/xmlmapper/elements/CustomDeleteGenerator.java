@@ -5,6 +5,7 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
+import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.custom.CustomColumnField;
 
 import java.util.List;
@@ -78,7 +79,8 @@ public class CustomDeleteGenerator extends
         sb.append(" and ")
                 .append(introspectedColumn.getActualColumnName())
                 .append(" = ")
-                .append("#{").append(introspectedColumn.getJavaProperty()).append("}");
+                .append(MyBatis3FormattingUtilities
+                        .getParameterClause(introspectedColumn));
 
         sb.append(',');
         valuesNotNullElement.addElement(new TextElement(sb.toString()));

@@ -90,13 +90,15 @@ public class TableConfiguration extends PropertyHolder {
 
     private List<IgnoredColumnPattern> ignoredColumnPatterns = new ArrayList<IgnoredColumnPattern>();
 
-    private String updateId;
-    private String updateBy;
-    private Date updateOn;
-    private String creatorId;
-    private String createBy;
-    private Date createOn;
-    private Integer rowStatus;
+//    private String updateId;
+//    private String updateBy;
+//    private Date updateOn;
+//    private String creatorId;
+//    private String createBy;
+//    private Date createOn;
+//    private Integer rowStatus;
+
+    private List<String> foreachFields;
 
     public TableConfiguration(Context context) {
         super();
@@ -617,59 +619,11 @@ public class TableConfiguration extends PropertyHolder {
         this.sqlProviderName = sqlProviderName;
     }
 
-    public String getUpdateId() {
-        return updateId;
+    public List<String> getForeachFields() {
+        return foreachFields;
     }
 
-    public void setUpdateId(String updateId) {
-        this.updateId = updateId;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateOn() {
-        return updateOn;
-    }
-
-    public void setUpdateOn(Date updateOn) {
-        this.updateOn = updateOn;
-    }
-
-    public String getCreatorId() {
-        return creatorId;
-    }
-
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateOn() {
-        return createOn;
-    }
-
-    public void setCreateOn(Date createOn) {
-        this.createOn = createOn;
-    }
-
-    public Integer getRowStatus() {
-        return rowStatus;
-    }
-
-    public void setRowStatus(Integer rowStatus) {
-        this.rowStatus = rowStatus;
+    public void setForeachFields(List<String> foreachFields) {
+        this.foreachFields = foreachFields;
     }
 }

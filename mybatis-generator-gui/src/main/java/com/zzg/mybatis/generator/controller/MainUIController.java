@@ -112,20 +112,23 @@ public class MainUIController extends BaseFXController {
     @FXML
     private ChoiceBox<String> encodingChoice;
 
+//    @FXML
+//    private TextField updateId;
+//    @FXML
+//    private TextField updateBy;
+//    @FXML
+//    private TextField updateOn;
+//    @FXML
+//    private TextField creatorId;
+//    @FXML
+//    private TextField createBy;
+//    @FXML
+//    private TextField createOn;
+//    @FXML
+//    private TextField rowStatus;
+
     @FXML
-    private TextField updateId;
-    @FXML
-    private TextField updateBy;
-    @FXML
-    private TextField updateOn;
-    @FXML
-    private TextField creatorId;
-    @FXML
-    private TextField createBy;
-    @FXML
-    private TextField createOn;
-    @FXML
-    private TextField rowStatus;
+    private TextField foreachFields;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -417,6 +420,7 @@ public class MainUIController extends BaseFXController {
         generatorConfig.setUseDAOExtendStyle(useDAOExtendStyle.isSelected());
         generatorConfig.setUseSchemaPrefix(useSchemaPrefix.isSelected());
         generatorConfig.setJsr310Support(jsr310Support.isSelected());
+        generatorConfig.setForeachFields(foreachFields.getText());
         return generatorConfig;
     }
 
@@ -447,12 +451,13 @@ public class MainUIController extends BaseFXController {
         useDAOExtendStyle.setSelected(generatorConfig.isUseDAOExtendStyle());
         useSchemaPrefix.setSelected(generatorConfig.isUseSchemaPrefix());
         jsr310Support.setSelected(generatorConfig.isJsr310Support());
-        updateBy.setText(generatorConfig.getUpdateBy());
-        updateId.setText(generatorConfig.getUpdateId());
-        updateOn.setText(generatorConfig.getUpdateOn());
-        createBy.setText(generatorConfig.getCreateBy());
-        creatorId.setText(generatorConfig.getCreatorId());
-        createOn.setText(generatorConfig.getCreateOn());
+//        updateBy.setText(generatorConfig.getUpdateBy());
+//        updateId.setText(generatorConfig.getUpdateId());
+//        updateOn.setText(generatorConfig.getUpdateOn());
+//        createBy.setText(generatorConfig.getCreateBy());
+//        creatorId.setText(generatorConfig.getCreatorId());
+//        createOn.setText(generatorConfig.getCreateOn());
+        foreachFields.setText(generatorConfig.getForeachFields());
     }
 
     @FXML

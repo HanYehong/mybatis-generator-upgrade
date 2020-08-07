@@ -70,13 +70,15 @@ public class GeneratorConfig {
 
     private boolean jsr310Support;
 
-	private String updateId;
-	private String updateBy;
-	private String updateOn;
-	private String creatorId;
-	private String createBy;
-	private String createOn;
-	private Integer rowStatus;
+//	private String updateId;
+//	private String updateBy;
+//	private String updateOn;
+//	private String creatorId;
+//	private String createBy;
+//	private String createOn;
+//	private Integer rowStatus;
+
+	private String foreachFields;
 
     public boolean isJsr310Support() {
         return jsr310Support;
@@ -306,59 +308,11 @@ public class GeneratorConfig {
 		return useDAOExtendStyle;
 	}
 
-	public String getUpdateId() {
-		return updateId;
+	public String getForeachFields() {
+		return foreachFields;
 	}
 
-	public void setUpdateId(String updateId) {
-		this.updateId = updateId;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public String getUpdateOn() {
-		return updateOn;
-	}
-
-	public void setUpdateOn(String updateOn) {
-		this.updateOn = updateOn;
-	}
-
-	public String getCreatorId() {
-		return creatorId;
-	}
-
-	public void setCreatorId(String creatorId) {
-		this.creatorId = creatorId;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public String getCreateOn() {
-		return createOn;
-	}
-
-	public void setCreateOn(String createOn) {
-		this.createOn = createOn;
-	}
-
-	public Integer getRowStatus() {
-		return rowStatus;
-	}
-
-	public void setRowStatus(Integer rowStatus) {
-		this.rowStatus = rowStatus;
+	public void setForeachFields(String foreachFields) {
+		this.foreachFields = foreachFields;
 	}
 }

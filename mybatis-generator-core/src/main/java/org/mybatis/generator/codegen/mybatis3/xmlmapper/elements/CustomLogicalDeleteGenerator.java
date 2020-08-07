@@ -5,6 +5,7 @@ import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
+import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.codegen.mybatis3.custom.CustomColumnField;
 
 import java.util.Arrays;
@@ -48,7 +49,7 @@ public class CustomLogicalDeleteGenerator extends
         if (rowStatus.size() > 0) {
             answer.addElement(new TextElement("set " + CustomColumnField.ROW_STATUS + " = 0"));
         } else {
-            answer.addElement(new TextElement("set @empty"));
+            answer.addElement(new TextElement("set empty"));
         }
 
         XmlElement insertTrimElement = new XmlElement("trim");
@@ -82,7 +83,8 @@ public class CustomLogicalDeleteGenerator extends
         sb.append(" and ")
                 .append(introspectedColumn.getActualColumnName())
                 .append(" = ")
-                .append("#{").append(introspectedColumn.getJavaProperty()).append("}");
+                .append(MyBatis3FormattingUtilities
+                        .getParameterClause(introspectedColumn));
 
         sb.append(',');
         valuesNotNullElement.addElement(new TextElement(sb.toString()));
