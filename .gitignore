@@ -30,3 +30,15 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+
+target/
+.settings/
+.classpath
+.project
+.settings/*
+bin/
+.metadata/*
+.idea/
+*.orig
+*.iml
+out/
